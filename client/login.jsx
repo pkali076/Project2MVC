@@ -79,6 +79,30 @@ const SignupWindow = (props) => {
     );
 }
 
+/*
+change password window
+const ChangePasswordWindow = (props) => {
+    return(
+        <form id="changePassForm"
+        name="changePassForm"
+        onSubmit={handlePassChange}
+        action="/passChange"
+        method="POST"
+        className="mainForm">
+                <label htmlFor="newPass">New Password: </label>
+                <input id="newPass" type="password" name="newPass" placeholder="new password" />
+                <label htmlFor="newPass2">New Password: </label>
+                <input id="newPass2" type="password" name="newPass2" placeholder="retype new password" />
+                <input id="_csrf" type="hidden" name="_csrf" value="{props.csrf}" />
+                <input className="formSubmit" type="submit" value="Change Password" />
+        </form>
+    );
+}
+
+
+
+*/
+
 
 const init = async () => {
     const response = await fetch('/getToken');

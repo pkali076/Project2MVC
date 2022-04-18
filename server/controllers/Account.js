@@ -5,6 +5,7 @@ const { Account } = models;
 const loginPage = (req, res) => {
   res.render('login', { csrfToken: req.csrfToken() });
 };
+// targets page for login.handlebars ???
 
 const getToken = (req, res) => res.json({ csrfToken: req.csrfToken() });
 
@@ -29,6 +30,31 @@ const login = (req, res) => {
     return res.json({ redirect: '/maker' });
   });
 };
+
+/*
+make functon for passwordChange here to check about field requirements
+process is between signup and login
+
+const passChange = async(req, res) => {
+  const newPass = `${req.body.newPass}`;
+  const newPass2 = `{req.body.newPass2}`;
+
+  if(!newPass || !newPass2){
+    return res.status(400).json({error: 'All fields are required!'});
+  }
+  if(newPass !== newPass2){
+    return res.status(400).json({error: 'Passwords do not match!'});
+  }
+  try{
+    const hash = await Account.generateHash(newPass);
+
+  }
+}
+
+IS IT POSSIBLE TO GENERATE NEW PASSWORD WITHOUT USING USERNAME IF USER IS ALREADY LOGGED IN
+ENDGOAL: DO THIS^^
+
+*/
 
 const signup = async (req, res) => {
   const username = `${req.body.username}`;
