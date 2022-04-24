@@ -6,13 +6,13 @@ let BlogModel = {};
 const setName = (name) => _.escape(name).trim();
 
 const BlogSchema = new mongoose.Schema({
-  blogName: {
+  name: {
     type: String,
     required: true,
     trim: true,
     set: setName,
   },
-  blogText: {
+  text: {
     type: String,
     required: true,
     trim: false,
@@ -30,8 +30,8 @@ const BlogSchema = new mongoose.Schema({
 });
 
 BlogSchema.statics.toAPI = (doc) => ({
-  blogName: doc.blogName,
-  blogText: doc.blogText,
+  name: doc.name,
+  text: doc.text,
 });
 
 BlogSchema.statics.findByOwner = (ownerId, callback) => {
@@ -39,7 +39,7 @@ BlogSchema.statics.findByOwner = (ownerId, callback) => {
     owner: mongoose.Types.ObjectId(ownerId),
   };
 
-  return BlogModel.find(search).select('blogName blogText').lean().exec(callback);
+  return BlogModel.find(search).select('name text').lean().exec(callback);
 };
 BlogModel = mongoose.model('Blog', BlogSchema);
 

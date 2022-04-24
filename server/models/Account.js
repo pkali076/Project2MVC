@@ -16,7 +16,6 @@ const mongoose = require('mongoose');
 const saltRounds = 10;
 
 let AccountModel = {};
-// let passwordModel = {};
 
 /* Our schema defines the data we will store. A username (string of alphanumeric
    characters), a password (actually the hashed version of the password created
@@ -39,22 +38,6 @@ const AccountSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
-/*
-new password Schema
-
-const NewPassSchema = new mongoose.Schema({
-  password: {
-    type:String,
-    required:true,
-  },
-  createdDate:{
-    type:Date,
-    default:Date.now,
-  },
-});
-
-*/
 
 // Converts a doc to something we can store in redis later on.
 AccountSchema.statics.toAPI = (doc) => ({
@@ -89,7 +72,25 @@ AccountSchema.statics.authenticate = async (username, password, callback) => {
   }
 };
 
-// passwordModel = mongoose.model('Password', NewPassSchema);
+// create updatePassword static fucntion and attach it to the Schema
+AccountSchema.statics.updatePassword = async (password, callback) => {
+  try {
+
+  
+    const doc = await AccountModel.findOneAndUpdate({ password }).exec();
+    if (!doc) {
+      return callback();
+    }
+
+    const match = await bcrypt.compare(password, doc.password);
+    if (match) {
+      return callback(null, doc);
+    }
+    return callback();
+  } catch (err) {
+    return callback(err);
+  }
+};
 
 AccountModel = mongoose.model('Account', AccountSchema);
 module.exports = AccountModel;

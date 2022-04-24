@@ -31,15 +31,15 @@ const makeBlog = async (req, res) => {
   }
 
   const blogData = {
-    blogName: req.body.blogName,
-    blogText: req.body.blogText,
+    name: req.body.name,
+    text: req.body.text,
     owner: req.session.account._id,
   };
 
   try {
     const newBlog = new Blog(blogData);
     await newBlog.save();
-    return res.status(201).json({ blogName: newBlog.blogName, blogText: newBlog.blogText });
+    return res.status(201).json({ name: newBlog.name, text: newBlog.text });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {

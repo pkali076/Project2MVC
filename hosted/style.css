@@ -7,8 +7,8 @@ html, body {
 }
 
 #logo {
-    height: 40px;
-    width: 40;
+    height: 50px;
+    width: 60px;
     padding-top: 5px;
     float:left;
     border-radius: 8px;
@@ -47,7 +47,7 @@ nav:nth-child(1) {
     background-color: #66bdff;
 }
 
-.domoForm {
+.blogForm {
     border: 2px solid #338acc;
     height: 35px;
     width: 700px;
@@ -58,7 +58,7 @@ nav:nth-child(1) {
     border-top-right-radius: 4px;
 }
 
-.domoForm label {
+.blogForm label {
     display: inline-block;
     width: 75px;
     margin-left: 10px;
@@ -67,11 +67,11 @@ nav:nth-child(1) {
     color: white;
 }
 
-.domoForm input[type=text] {
+.blogForm input[type=text] {
     float:left;
 }
 
-.makeDomoSubmit {
+.makeBlogSubmit {
     transition: background-color 0.4s ease;
     display: inline;
     width: 90px;
@@ -81,11 +81,11 @@ nav:nth-child(1) {
     text-decoration: none;
 }
 
-.makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
+.makeBlogSubmit:link, .makeBlogSubmit:visited, .makeBlogSubmit:hover, .makeBlogSubmit:active {
     color: white;
 }
 
-.makeDomoSubmit:hover {
+.makeBlogSubmit:hover {
     transition: background-color 0.4s ease;
     background-color: #338acc;
 }
@@ -181,7 +181,7 @@ nav:nth-child(1) {
     font-style: italic;
 }
 
-#domo {
+#blog {
     z-index: 225;
     margin-top: -20px;
     margin-left: 135px;
@@ -192,36 +192,36 @@ nav:nth-child(1) {
     transform: rotate(330deg);
 }
 
-#domos {
+#blogs {
     width: 40%;
     min-width: 400px;
-    border: 2px solid #55acee;
+    border: 2px solid #038BC0;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 100px;
 }
 
-.domo {
+.blog {
     width: 95%;
     margin: 0 auto;
     margin-top: 2px;
     margin-bottom: 2px;
-    border: 2px solid #55acee;
+    border: 2px solid #038BC0;
     border-radius: 4px;
-    background-color: #55acee;
+    background-color: #038BC0;
     padding: 10px;
     min-height:60px;
     overflow: hidden;
 }
 
-.domo:hover {
+.blog:hover {
     transition: border-color 0.2s ease-out;
     border-color: rgba(255,255,255, 0.8);
     transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
+    background-color: #038BC0;
 }
 
-img.domoFace {
+img.blogFace {
     margin-left: 25px;
     margin-right: 10px;
     height: 50px;
@@ -231,7 +231,7 @@ img.domoFace {
     float:left;
 }
 
-h3.emptyDomo {
+h3.emptyBlog {
     width: 400px;
     font-size: 1.5em;
     margin: 0 auto;
@@ -239,7 +239,7 @@ h3.emptyDomo {
     margin-top: 18px;
 }
 
-h3.domoName {
+h3.blogName {
     float:left;
     width: 200px;
     font-weight: bold;
@@ -247,7 +247,7 @@ h3.domoName {
     font-size: 1.5em;
 }
 
-h3.domoAge {
+h3.blogText {
     float:right;
     text-align: left;
     width: 100px;
@@ -256,10 +256,10 @@ h3.domoAge {
     font-size: 1.5em;
 }
 
-.domo:first-child {
+.blog:first-child {
     margin-top: 10px;
 }
 
-.domo:last-child {
+.blog:last-child {
     margin-bottom:10px;
 }

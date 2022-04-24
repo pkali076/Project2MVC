@@ -9,14 +9,9 @@ const router = (app) => {
   app.post('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.login);
 
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
-  // app post & get for passChange...???
-  /*
-  app.get('/passChange', mid.requiresSecure, mid.requiresLogin, controllers.Account.passChange);
-  app.post('/passChange', mid.requiresSecure, mid.requiresLogin, controllers.Account.passChange);
 
-  make new passwordChange page?
-
-  */
+  app.get('/passChange', mid.requiresLogin, mid.requiresPassChange, controllers.Account.passwordPage);
+  app.post('/passChange', mid.requiresLogin, mid.requiresPassChange, controllers.Account.passChange);
 
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
 

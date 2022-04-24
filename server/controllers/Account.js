@@ -23,38 +23,42 @@ const login = (req, res) => {
   }
   return Account.authenticate(username, pass, (err, account) => {
     if (err || !account) {
-      return res.status(401).json({ error: ' Wrong username or password!' });
+      return res.status(401).json({ error: 'Wrong username or password!' });
     }
     req.session.account = Account.toAPI(account);
-
     return res.json({ redirect: '/maker' });
   });
 };
 
 /*
 make functon for passwordChange here to check about field requirements
-process is between signup and login
+process is between signup and login */
+const passwordPage = (req, res) => {
+  res.render('passChange', { csrfToken: req.csrfToken() });
+};
 
-const passChange = async(req, res) => {
-  const newPass = `${req.body.newPass}`;
-  const newPass2 = `{req.body.newPass2}`;
+const passChange = async (req, res) => {
+// enter old password.
 
-  if(!newPass || !newPass2){
-    return res.status(400).json({error: 'All fields are required!'});
+  // if password matches current account password
+  // replace old password with new password
+  // redirect back to /maker
+
+  const oldpass = `${req.body.oldPass}`;
+  const newPass2 = `${req.body.newPass2}`;
+  if (oldpass === Account.password) {
+    const hash = await Account.generateHash(newPass2);
+    Account.password = hash;
+    await Account.save();
+    return res.json({ redirect: '/maker' });
   }
-  if(newPass !== newPass2){
-    return res.status(400).json({error: 'Passwords do not match!'});
+  if (oldpass !== Account.password) {
+    return res.status(400).json({ error: 'Current password entered does not match our records' });
   }
-  try{
-    const hash = await Account.generateHash(newPass);
+  return res.status(400).json({ error: 'An error occurred' });
+};
 
-  }
-}
-
-IS IT POSSIBLE TO GENERATE NEW PASSWORD WITHOUT USING USERNAME IF USER IS ALREADY LOGGED IN
-ENDGOAL: DO THIS^^
-
-*/
+// may as well try
 
 const signup = async (req, res) => {
   const username = `${req.body.username}`;
@@ -85,6 +89,8 @@ const signup = async (req, res) => {
 
 module.exports = {
   loginPage,
+  passChange,
+  passwordPage,
   login,
   logout,
   signup,

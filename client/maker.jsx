@@ -4,19 +4,21 @@ const handleBlog = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    const blogName = e.target.querySelector('#blogName').value;
-    const blogText = e.target.querySelector('#blogText').value;
+    const name = e.target.querySelector('#blogName').value;
+    const text = e.target.querySelector('#blogText').value;
     const _csrf = e.target.querySelector('#_csrf').value;
 
-    if(!blogName || !blogText){
+    if(!name || !text){
         helper.handleError('All fields are required!');
         return false;
     }
 
-    helper.sendPost(e.target.action, {blogName, blogText, _csrf}, loadBlogsFromServer);
+    helper.sendPost(e.target.action, {name, text, _csrf}, loadBlogsFromServer);
 
     return false;
 }
+
+
 
 const BlogForm = (props) => {
     return(
@@ -27,10 +29,10 @@ const BlogForm = (props) => {
             method="POST"
             className="blogForm"
             >
-                <label htmlFor="blogName">Blog Name: </label>
-                <input id="blogName" type="text" name="blogName" placeholder="Blog Name" />
-                <label htmlFor="blogText">Blog Text: </label>
-                <input id="blogText" type="text" name="blogText" />
+                <label htmlFor="name">Blog Name: </label>
+                <input id="blogName" type="text" name="name" placeholder="Blog Name" />
+                <label htmlFor="text">Blog Text: </label>
+                <input id="blogText" type="text" name="text" />
                 <input id="_csrf" type="hidden" name="_csrf" value={props.csrf} />
                 <input className="makeBlogSubmit" type="submit" value="Make Blog" />
             </form>
@@ -49,9 +51,9 @@ const BlogList = (props) => {
     const blogNodes = props.blog.map(blog => {
         return(
             <div key={blog._id} className="blog">
-                <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-                <h3 className="blogName"> Name: {blog.blogName} </h3>
-                <h3 className="blogText"> Blog Text: {blog.blogText} </h3>
+                <img src="/assets/img/blog.png" alt="blog alt" className="blogFace" />
+                <h3 className="blogName"> Name: {blog.name} </h3>
+                <h3 className="blogText"> Blog Text: {blog.text} </h3>
             </div>
         );
     });
@@ -67,7 +69,7 @@ const loadBlogsFromServer = async () => {
     const response = await fetch('/getBlogs');
     const data = await response.json();
     ReactDOM.render(
-        <BlogList blogs={data.blog} />,
+        <BlogList blogs={data.blogs} />,
         document.getElementById('blogs')
     );
 }
