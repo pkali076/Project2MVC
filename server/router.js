@@ -10,8 +10,10 @@ const router = (app) => {
 
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
 
-  app.get('/passChange', mid.requiresLogin, mid.requiresPassChange, controllers.Account.passwordPage);
-  app.post('/passChange', mid.requiresLogin, mid.requiresPassChange, controllers.Account.passChange);
+  app.get('/passChange', mid.requiresLogin, controllers.Account.passwordPage);
+
+  //where post?
+  app.post('/passChange', mid.requiresLogin, controllers.Account.passChange);
 
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
 

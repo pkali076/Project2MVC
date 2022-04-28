@@ -3,30 +3,10 @@ const models = require('../models');
 const { Blog } = models;
 const BlogModel = require('../models/Blog');
 
-// const { Domo } = models;
-
 const makerPage = (req, res) => res.render('app');
 
-// add more requirements..
-
-/* ******************LAYOUT**************************
-blogName
-textEditor
-blogText (textArea)
-
-make variable for textArea in textEditor
-or just leave textArea as it is for now.. maybe add textEditor later
-make both areas mandatory
-
-possible image upload necessary, or optional image uploads
-possible links to post
-
---at least get rough draft of this done before focusing on a text editor itself
---with bold, italics, added links for customization, etc
-
-*/
 const makeBlog = async (req, res) => {
-  if (!req.body.blogName || !req.body.blogText) {
+  if (!req.body.name || !req.body.text) {
     return res.status(400).json({ error: 'Blog name and blog text are required!' });
   }
 

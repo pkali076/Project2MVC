@@ -41,13 +41,13 @@ const init = async() => {
     const response = await fetch('/getToken');
     const data = await response.json();
 
-    const passChangeButton = document.getElementById('passChangeButton');
+    const passChangeButton = document.getElementById('passChangeButtonTest');
 
     passChangeButton.addEventListener('click', (e) => {
         e.preventDefault();
         ReactDOM.render(<ChangePasswordWindow csrf={data.csrfToken} />,
-            document.getElementById('content'));
-        //return false;
+            document.getElementById('changePasswordID'));
+        return false;
     });
 };
 window.onload = init;

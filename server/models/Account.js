@@ -76,7 +76,6 @@ AccountSchema.statics.authenticate = async (username, password, callback) => {
 AccountSchema.statics.updatePassword = async (password, callback) => {
   try {
 
-  
     const doc = await AccountModel.findOneAndUpdate({ password }).exec();
     if (!doc) {
       return callback();
