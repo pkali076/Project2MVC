@@ -42,6 +42,10 @@ const handleSignup = (e) => {
 
 const LoginWindow = (props) => {
     return(
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
         <form id="loginForm"
             name="loginForm"
             onSubmit={handleLogin}
@@ -49,33 +53,37 @@ const LoginWindow = (props) => {
             method="POST"
             className="mainForm"
         >
-            <label htmlFor="username">Username: </label>
-            <input id="user" type="text" name="username" placeholder="username" />
-            <label htmlFor="pass">Password: </label>
-            <input id="pass" type="password" name="pass" placeholder="password" />
-            <input id="_csrf" type="hidden" name="_csrf" value={props.csrf} />
-            <input className="formSubmit" type="submit" value="Sign in" />
-        </form>
+            <label class="label" htmlFor="username">Username: </label>
+            <input class="input is-primary is-normal is-primary" id="user" type="text" name="username" placeholder="username" />
+            <label class="label" htmlFor="pass">Password: </label>
+            <input class="input is-primary is-normal is-primary" id="pass" type="password" name="pass" placeholder="password" />
+            <input class="input is-primary is-normal is-primary" id="_csrf" type="hidden" name="_csrf" value={props.csrf} />
+            <button class="button is-primary is-medium" className="formSubmit" type="submit" value="Sign in" >Sign In</button>
+        </form></div></div></div></section>
     );
 };
 
 const SignupWindow = (props) => {
     return(
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                <div class="column">
         <form id="signupForm"
         name="signupForm"
         onSubmit={handleSignup}
         action="/signup"
         method="POST"
         className="mainForm">
-            <label htmlFor="username">Username: </label>
-            <input id="user" type="text" name="username" placeholder="username" />
-            <label htmlFor="pass">Password: </label>
-            <input id="pass" type="password" name="pass" placeholder="password" />
-            <label htmlFor="pass2">Password: </label>
-            <input id="pass2" type="password" name="pass2" placeholder="retype password" />
-            <input id="_csrf" type="hidden" name="_csrf" value={props.csrf} />
-            <input className="formSubmit" type="submit" value="Sign in" />
-        </form>
+            <label class="label" htmlFor="username">Username: </label>
+            <input class="input is-primary is-normal is-primary" id="user" type="text" name="username" placeholder="username" />
+            <label class="label" htmlFor="pass">Password: </label>
+            <input class="input is-primary is-normal is-primary" id="pass" type="password" name="pass" placeholder="password" />
+            <label class="label" htmlFor="pass2">Password: </label>
+            <input class="input is-primary is-normal is-primary" id="pass2" type="password" name="pass2" placeholder="retype password" />
+            <input class="input is-primary is-normal is-primary" id="_csrf" type="hidden" name="_csrf" value={props.csrf} />
+            <button class="button is-primary is-medium" className="formSubmit" type="submit" value="Sign in" >Sign Up</button>
+        </form></div></div></div></section>
     );
 }
 
@@ -100,6 +108,12 @@ const init = async () => {
         ReactDOM.render(<SignupWindow csrf={data.csrfToken} />,
             document.getElementById('content'));
         return false;
+    });
+    const burgerIcon = document.querySelector("#burger");
+    const navbarMenu = document.querySelector("#nav-links");
+
+    burgerIcon.addEventListener('click', () => {
+        navbarMenu.classList.toggle('is-active');
     });
 
     ReactDOM.render(<LoginWindow csrf={data.csrfToken} />,

@@ -53,7 +53,7 @@ app.use(session({
   store: new RedisStore({
     client: redisClient,
   }),
-  secret: 'Domo Arigato',
+  secret: 'Blog Arigato',
   resave: true,
   saveUninitialized: true,
   cookie: {
